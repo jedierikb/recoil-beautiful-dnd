@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import {
+  RecoilRoot
+} from 'recoil';
+
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <App />
@@ -12,7 +16,9 @@ import * as serviceWorker from './serviceWorker';
 // );
 
 ReactDOM.render(
-  <App />,
+  <RecoilRoot>
+  	<App/>
+  </RecoilRoot>,
   document.getElementById('root')
 );
 

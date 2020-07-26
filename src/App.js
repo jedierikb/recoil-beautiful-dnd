@@ -10,9 +10,9 @@ import {
 } from "react-beautiful-dnd";
 
 import {
-  atom
+  atom,
+  useRecoilState
 } from "recoil";
-
 
 // fake data generator
 const getItems = count =>
@@ -45,7 +45,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const getListStyle = isDraggingOver => {
-  console.log( 'getListStyle' );
+  console.log( 'rendering' );
   return {
     background: isDraggingOver ? "lightblue" : "lightgrey",
     padding: grid,
@@ -53,9 +53,16 @@ const getListStyle = isDraggingOver => {
   }
 };
 
+const itemsAtom = atom({
+  key: 'a',
+  default: getItems(10)
+});
+
 const App = () => {
 
-  const [items, setItems] = useState( u => getItems(10) );
+  // toggle these two lines & monitor console to see difference
+  // const [items, setItems] = useState( u => getItems(10) );
+  const [items, setItems] = useRecoilState( itemsAtom );
 
   const onDragEnd = useCallback( result => {
     // dropped outside the list
